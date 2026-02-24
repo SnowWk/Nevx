@@ -20,11 +20,17 @@ async def on_ready():
 
 auto_responses = {
 	"12": "Hello, malheureusement le serveur est réservé aux personnes ayant **18 ans** ou plus, désolé :pray:",
+	"12ans": "Hello, malheureusement le serveur est réservé aux personnes ayant **18 ans** ou plus, désolé :pray:",
 	"13": "Hello, malheureusement le serveur est réservé aux personnes ayant **18 ans** ou plus, désolé :pray:",
+	"13ans": "Hello, malheureusement le serveur est réservé aux personnes ayant **18 ans** ou plus, désolé :pray:",
 	"14": "Hello, malheureusement le serveur est réservé aux personnes ayant **18 ans** ou plus, désolé :pray:",
+	"14ans": "Hello, malheureusement le serveur est réservé aux personnes ayant **18 ans** ou plus, désolé :pray:",
 	"15": "Hello, malheureusement le serveur est réservé aux personnes ayant **18 ans** ou plus, désolé :pray:",
+	"15ans": "Hello, malheureusement le serveur est réservé aux personnes ayant **18 ans** ou plus, désolé :pray:",
 	"16": "Hello, malheureusement le serveur est réservé aux personnes ayant **18 ans** ou plus, désolé :pray:",
-	"17": "Hello, peux-tu nous préciser ton année de naissance ? Merci :pray:"
+	"16ans": "Hello, malheureusement le serveur est réservé aux personnes ayant **18 ans** ou plus, désolé :pray:",
+	"17": "Hello, peux-tu nous préciser ton année de naissance ? Merci :pray:",
+	"17ans": "Hello, malheureusement le serveur est réservé aux personnes ayant **18 ans** ou plus, désolé :pray:"
 }
 
 CHANNEL_ID = None;
