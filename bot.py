@@ -3,6 +3,8 @@ from discord.ext import commands # Imports the commands extension from discord.e
 import os # Imports Python's built-in os module, which provides functions for interacting with the os
 from dotenv import load_dotenv # Imports the load_dotenv function from python-dotenv package. It allows to load environment variables from a .env file into project.
 import re
+from flask import Flask
+from threading import Thread
 
 load_dotenv() # Loads the environment variables from .env file into this script. ( Bot token are stocked in .env file )
 intents = discord.Intents.default() # Creates an intents object with the default permissions. Intents are Discord's way of allowing bots to suscribe to specific events.
@@ -59,5 +61,19 @@ async def on_message(message):
 			await message.reply(response)
 			break # Only one reply per message to avoid spam
 	await bot.process_commands(message)
+
+flask_app = Flask('')
+
+@flask_app.route("/", defaults={'path': ''})
+@flask_app.route("/<path:path>")
+def catch_all(path):
+	return "✅ Bot is alive and running 24/7!"
+
+def run_flask():
+	port = int(os.environ.get('PORT', 10000))
+	flask_app.run(host='0.0.0.0', port=port, debug=False)
+
+flask_thread = Thread(target=run_flask, daemon=True)
+flask_thread.start()
 
 bot.run(os.getenv('DISCORD_TOKEN'))
