@@ -32,7 +32,7 @@ auto_responses = {
 	"16": "Hello, malheureusement le serveur est réservé aux personnes ayant **18 ans** ou plus, désolé :pray:",
 	"16ans": "Hello, malheureusement le serveur est réservé aux personnes ayant **18 ans** ou plus, désolé :pray:",
 	"17": "Hello, peux-tu nous préciser ton année de naissance ? Merci :pray:",
-	"17ans": "Hello, malheureusement le serveur est réservé aux personnes ayant **18 ans** ou plus, désolé :pray:"
+	"17ans": "Hello, peux-tu nous préciser ton année de naissance ? Merci :pray:"
 }
 
 CHANNEL_ID = None;
