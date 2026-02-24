@@ -41,26 +41,37 @@ ROLE_IDS = [1466893141130088584]
 
 @bot.event
 async def on_message(message):
-	# Ignore messages from the bot itself
-	if message.author == bot.user:
-		return
-	if CHANNEL_ID is not None and message.channel.id != CHANNEL_ID:
-		await bot.process_commands(message)
-		return
-	if CATEGORY_ID is not None and message.channel.category_id != CATEGORY_ID:
-		await bot.process_commands(message)
-		return
-	has_role = any(role.id in ROLE_IDS for role in message.author.roles)
-	if not has_role:
-		await bot.process_commands(message)
-		return
-	msg_lower = message.content.lower()
-	words = re.findall(r'\b\w+\b', msg_lower)
-	for word, response in auto_responses.items():
-		if word in words:
-			await message.reply(response)
-			break # Only one reply per message to avoid spam
-	await bot.process_commands(message)
+    # Ignore messages from the bot itself
+    if message.author == bot.user:
+        return
+    
+    # Channel check
+    if CHANNEL_ID is not None and message.channel.id != CHANNEL_ID:
+        await bot.process_commands(message)
+        return
+    
+    # Category check  
+    if CATEGORY_ID is not None and message.channel.category_id != CATEGORY_ID:
+        await bot.process_commands(message)
+        return
+    
+    # Role check
+    has_role = any(role.id in ROLE_IDS for role in message.author.roles)
+    if not has_role:
+        await bot.process_commands(message)
+        return
+    
+    # Auto-response (uniquement si role OK)
+    msg_lower = message.content.lower()
+    words = re.findall(r'\b\w+\b', msg_lower)
+    for word, response in auto_responses.items():
+        if word in words:
+            await message.reply(response)
+            break
+    
+    # ← UN SEUL process_commands à la FIN !
+    await bot.process_commands(message)
+
 
 flask_app = Flask('')
 
