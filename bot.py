@@ -2,6 +2,7 @@ import discord # Imports the discord.py library ( Python API wrapper for Discord
 from discord.ext import commands # Imports the commands extension from discord.ext
 import os # Imports Python's built-in os module, which provides functions for interacting with the os
 from dotenv import load_dotenv # Imports the load_dotenv function from python-dotenv package. It allows to load environment variables from a .env file into project.
+import re
 
 load_dotenv() # Loads the environment variables from .env file into this script. ( Bot token are stocked in .env file )
 intents = discord.Intents.default() # Creates an intents object with the default permissions. Intents are Discord's way of allowing bots to suscribe to specific events.
@@ -46,8 +47,9 @@ async def on_message(message):
 		await bot.process_commands(message)
 		return
 	msg_lower = message.content.lower()
+	words = re.findall(r'\b\w+\b', msg_lower)
 	for word, response in auto_responses.items():
-		if word in msg_lower:
+		if word in words:
 			await message.reply(response)
 			break # Only one reply per message to avoid spam
 	await bot.process_commands(message)
